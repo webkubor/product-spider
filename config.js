@@ -2,12 +2,18 @@
 export const scrapingConfig = {
   
   // 小米商店爬虫配置
-  "xiaomi": {
-    "url": "https://mistore.pk/collections/gear-devices",
-    "type": "custom",
+  "Lifestyle": {
+    "url": "https://mistore.pk/pages/lifestyle",
+    "type": "standard",
     "waitSelector": ".no_crop_image.grid-item",
     "waitTime": 8000,
-    "customLogic": "xiaomi"
+    "autoScroll": true,
+    "selectors": {
+      "product": ".no_crop_image.grid-item",
+      "name": ".product-title",
+      "price": "p.regular-product>span",
+      "image": "img"
+    }
   },
   
   // 智能手表爬虫配置
@@ -27,11 +33,16 @@ export const scrapingConfig = {
   // CopyPencil 包包爬虫配置
   "copypencil-bags": {
     "url": "https://copypencil.pk/collections/bags-amp-pouches-view-all-bags",
-    "type": "custom",
+    "type": "standard",
     "waitSelector": ".product-collection .product-item",
     "autoScroll": true,
     "waitTime": 3000,
-    "customLogic": "copypencil"
+    "selectors": {
+      "product": ".product-collection .product-item",
+      "name": ".product-title",
+      "price": ".price-regular > span",
+      "image": ".product-item img"
+    }
   },
   
   // DJI 图片爬虫配置
