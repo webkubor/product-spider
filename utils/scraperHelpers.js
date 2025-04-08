@@ -34,8 +34,8 @@ export async function saveResults(siteName, data, fs, path) {
   const resultsDir = './results';
   await fs.ensureDir(resultsDir);
   
-  const timestamp = new Date().toISOString().replace(/:/g, '-').replace(/\..+/, '');
-  const fileName = `${siteName}_${timestamp}.json`;
+  // 移除时间戳，直接使用网站名称
+  const fileName = `${siteName}.json`;
   const filePath = path.join(resultsDir, fileName);
   
   await fs.writeJson(filePath, data, { spaces: 2 });

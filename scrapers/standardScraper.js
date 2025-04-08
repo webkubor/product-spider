@@ -40,7 +40,29 @@ export async function standardScraper(siteName, config, page) {
       const linkElement = element.querySelector(selectors.link) || imageElement?.closest('a');
       
       // 确保一定有图片，如果没有图片则跳过该产品
-      if (!imageElement || !(imageElement.src || imageElement.getAttribute('src'))) {
+      let imageUrl = null;
+      if (imageElement) {
+        // 尝试从src属性获取
+        imageUrl = imageElement.src || imageElement.getAttribute('src');
+        
+        // 如果没有src，尝试从background-image样式获取
+        if (!imageUrl) {
+          const style = imageElement.getAttribute('style');
+          if (style && style.includes('background-image')) {
+            const match = style.match(/url\("?([^"\)]+)"?\)/);
+            if (match && match[1]) {
+              imageUrl = match[1];
+            }
+          }
+        }
+        
+        // 尝试从data-bgset属性获取
+        if (!imageUrl) {
+          imageUrl = imageElement.getAttribute('data-bgset');
+        }
+      }
+      
+      if (!imageUrl) {
         return null;
       }
       
@@ -57,7 +79,7 @@ export async function standardScraper(siteName, config, page) {
         id: index + 1,
         name: nameElement && nameElement.textContent.trim() ? nameElement.textContent.trim() : `${productTypes[productIndex]} #${itemNumber}`,
         price: priceElement && priceElement.textContent.trim() ? priceElement.textContent.trim() : `#price_placeholder_${itemNumber}`,
-        image: imageElement.src || imageElement.getAttribute('src'),
+        image: imageUrl,
         url: linkElement ? linkElement.href : null
       };
     }).filter(item => item !== null); // 过滤掉没有图片的产品

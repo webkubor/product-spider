@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 import fs from 'fs-extra';
 import path from 'path';
-import { scrapingConfig } from './config.js';
+import { scrapingConfig, ignoreList } from './config.js';
 import { log } from './utils/logger.js';
 import { scrapeProducts } from './scrapers/index.js';
 import { saveResults } from './utils/scraperHelpers.js';
@@ -24,6 +24,12 @@ async function main() {
     
     // 遍历配置的网站
     for (const [siteName, config] of Object.entries(scrapingConfig)) {
+      // 检查是否在忽略名单中
+      if (ignoreList.includes(siteName)) {
+        log.warning(`跳过爬取 ${siteName} (在忽略名单中)`);
+        continue;
+      }
+      
       log.title(`开始爬取 ${siteName}`);
       
       // 访问网站
