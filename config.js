@@ -3,7 +3,8 @@
 // 忽略名单，列出不需要爬取的站点
 export const ignoreList = [
   "pakstyle",
-  "copypencil-fineArts"
+  "copypencil-fineArts",
+  "hp-flash-sale"
 ];
 
 // 全局配置
@@ -12,6 +13,21 @@ export const globalConfig = {
 };
 
 export const scrapingConfig = {
+  "hp-just-for-you":{
+    "url": "https://pages.daraz.pk/wow/gcp/route/daraz/pk/upr/router?hybrid=1&data_prefetch=true&prefetch_replace=1&at_iframe=1&wh_pid=%2Flazada%2Fchannel%2Fpk%2Fflashsale%2F7cdarZ6wBa&hide_h5_title=true&lzd_navbar_hidden=true&disable_pull_refresh=true&skuIds=621987133%2C415248125%2C3127508%2C593964615%2C206800981%2C471790793%2C221707166&spm=a2a0e.tm80335142.FlashSale.d_shopMore",
+    "type": "standard",
+    "waitSelector": ".card-jfy-wrapper",
+    "autoScroll": true,
+    "waitTime": 5000,
+    "selectors": {
+      "product": ".pc-custom-link.jfy-item",
+      "name": ".card-jfy-title",
+      "price": ".hp-mod-price-first-line .price",
+      "oldPrice": ".hp-mod-price-first-line .original",
+      "image": ".picture-wrapper img",
+      "link": ".pc-custom-link.jfy-item"
+    }
+  },
   "hp-flash-sale":{
     "url": "https://www.daraz.pk/#hp-categories",
     "type": "standard",
