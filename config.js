@@ -15,6 +15,20 @@ export const globalConfig = {
 };
 
 export const scrapingConfig = {
+  "plush-toys":{
+    'url': "https://www.uppacase.com/categories/character-plush-toy",
+    "type": "standard",
+    "waitSelector": ".ProductList-list",
+    "autoScroll": true,
+    "waitTime": 3000,
+    "selectors": {
+      "product": ".product-item",
+      "name": ".title.text-primary-color",
+      "price": ".price.sl-price",
+      "oldPrice": ".ProductItem-price--compare",
+      "image": ".boxify-image-wrap img"
+    }
+  },
   "shoptrendy":{
     "url": "https://shoptrendy.pk/",
     "type": "standard",

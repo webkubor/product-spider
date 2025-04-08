@@ -174,15 +174,19 @@ export async function standardScraper(siteName, config, page) {
         }
       }
       
-      // 提取价格文本
-      let productPrice = '';
-      if (priceElement) {
-        productPrice = priceElement.textContent ? priceElement.textContent.trim() : '';
-        // 如果没有文本，尝试获取属性
-        if (!productPrice) {
-          productPrice = priceElement.getAttribute('data-price') || priceElement.getAttribute('content') || '';
+        // 提取价格文本
+        let productPrice = '';
+        if (priceElement) {
+          let priceText = priceElement.textContent ? priceElement.textContent.trim() : '';
+          // 如果没有文本，尝试获取属性
+          if (!priceText) {
+            priceText = priceElement.getAttribute('data-price') || priceElement.getAttribute('content') || '';
+          }
+  
+          // 使用正则表达式提取数字部分
+          const match = priceText.match(/[\d\.]+/);
+          productPrice = match ? match[0] : '';
         }
-      }
       
       // 如果没有获取到名称或价格，使用占位符
       if (!productName) {
