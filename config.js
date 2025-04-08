@@ -7,6 +7,10 @@ export const ignoreList = [
   "shoptrendy",
   "hp-flash-sale",
   "hp-just-for-you",
+  "plush-toys",
+  "spring",
+  "ponds",
+  "bluetooth-speakers"
 ];
 
 // 全局配置
@@ -15,6 +19,62 @@ export const globalConfig = {
 };
 
 export const scrapingConfig = {
+  "trimmers-shaver":{
+    'url': "https://priceoye.pk/trimmers-shaver",
+    "type": "standard",
+    "waitSelector": ".product-list",
+    "autoScroll": true,
+    "waitTime": 6000,
+    "selectors": {
+      "product": ".productBox",
+      "name": ".text-box .p-title",
+      "price": ".price-box",
+      "difference": ".price-diff .price-diff-saving",
+      "image": ".image-box img"
+    }
+  },
+  "bluetooth-speakers":{
+    'url': "https://priceoye.pk/bluetooth-speakers",
+    "type": "standard",
+    "waitSelector": ".product-list",
+    "autoScroll": true,
+    "waitTime": 3000,
+    "selectors": {
+      "product": ".productBox",
+      "name": ".text-box .p-title",
+      "price": ".price-box",
+      "difference": ".price-diff .price-diff-saving",
+      "image": ".image-box img"
+    }
+  },
+  "ponds":{
+    'url': "https://bagallery.com/collections/ponds",
+    "type": "standard",
+    "waitSelector": ".t4s-main-collection-page",
+    "autoScroll": true,
+    "waitTime": 3000,
+    "selectors": {
+      "product": ".t4s-product.t4s-pr-grid.t4s-pr-style3",
+      "name": ".t4s-product-title a",
+      "price": ".t4s-product-price .money",
+      "image": ".t4s-product-img img"
+    }
+  },
+
+  "spring":{
+    'url': "https://www.uppacase.com/categories/spring",
+    "type": "standard",
+    "waitSelector": ".ProductList-list",
+    "autoScroll": true,
+    "waitTime": 3000,
+    "selectors": {
+      "product": ".product-item",
+      "name": ".title.text-primary-color",
+      "price": ".price.sl-price",
+      "oldPrice": ".ProductItem-price--compare",
+      "image": ".boxify-image-wrap img"
+    }
+  },
   "plush-toys":{
     'url': "https://www.uppacase.com/categories/character-plush-toy",
     "type": "standard",
