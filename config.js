@@ -3,8 +3,9 @@
 // 忽略名单，列出不需要爬取的站点
 export const ignoreList = [
   "pakstyle",
-  "copypencil-fineArts",
-  "hp-flash-sale"
+  "fineArts",
+  "hp-flash-sale",
+  "hp-just-for-you",
 ];
 
 // 全局配置
@@ -13,6 +14,21 @@ export const globalConfig = {
 };
 
 export const scrapingConfig = {
+  "shoptrendy":{
+    "url": "https://shoptrendy.pk/",
+    "type": "standard",
+    "waitSelector": ".product-list",
+    "autoScroll": true,
+    "waitTime": 3000,
+    "selectors": {
+      "product": ".grid-item.product-item",
+      "name": ".woocommerce-loop-product__title",
+      "price": ".price",
+      "oldPrice": ".price del",
+      "image": ".product-thumbnail img",
+      "link": ".product-thumbnail a"
+    }
+  },
   "hp-just-for-you":{
     "url": "https://pages.daraz.pk/wow/gcp/route/daraz/pk/upr/router?hybrid=1&data_prefetch=true&prefetch_replace=1&at_iframe=1&wh_pid=%2Flazada%2Fchannel%2Fpk%2Fflashsale%2F7cdarZ6wBa&hide_h5_title=true&lzd_navbar_hidden=true&disable_pull_refresh=true&skuIds=621987133%2C415248125%2C3127508%2C593964615%2C206800981%2C471790793%2C221707166&spm=a2a0e.tm80335142.FlashSale.d_shopMore",
     "type": "standard",
@@ -43,7 +59,7 @@ export const scrapingConfig = {
       "link": ".pc-custom-link.jfy-item"
     }
   },
-  "copypencil-fineArts":{
+  "fineArts":{
     "url": "https://copypencil.pk/collections/fine-arts",
     "type": "standard",
     "waitSelector": "#main-collection-product-grid .product-collection",
