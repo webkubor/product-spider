@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 import fs from 'fs-extra';
 import path from 'path';
-import { scrapingConfig, ignoreList } from './config.js';
+import { scrapingConfig, ignoreList, globalConfig } from './config.js';
 import { log } from './utils/logger.js';
 import { scrapeProducts } from './scrapers/index.js';
 import { saveResults } from './utils/scraperHelpers.js';
@@ -14,7 +14,7 @@ async function main() {
   
   // 启动浏览器
   const browser = await chromium.launch({
-    headless: false
+    headless: true
   });
   
   try {
