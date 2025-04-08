@@ -4,6 +4,7 @@
 export const ignoreList = [
   "pakstyle",
   "fineArts",
+  "shoptrendy",
   "hp-flash-sale",
   "hp-just-for-you",
 ];
