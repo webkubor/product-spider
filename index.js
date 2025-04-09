@@ -40,8 +40,8 @@ async function main() {
       const products = await scrapeProducts(siteName, config, page);
       log.success(`爬取完成，获取到 ${products.length} 个产品`);
       
-      // 保存结果
-      await saveResults(siteName, products, fs, path);
+      // 保存结果，传入产品数量限制
+      await saveResults(siteName, products, fs, path, globalConfig.productLimit);
     }
   } catch (error) {
     log.error(`爬虫执行出错: ${error.message}`);

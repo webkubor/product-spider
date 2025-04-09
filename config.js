@@ -6,24 +6,24 @@ export const ignoreList = [
 
 // 全局配置
 export const globalConfig = {
-  productLimit: 50  // 每个站点最多爬取的产品数量
+  productLimit: 30  // 每个站点最多爬取的产品数量
 };
 
 export const scrapingConfig = {
-   "boboshop": {
-    "url": "https://shop.samsonite.com/sale/",
+   "doughnut": {
+    "url": "https://www.doughnut.com.tw/v2/official/SalePageCategory/445264?sortMode=PageView",
     "type": "standard",
-    "waitSelector": ".container.search-results",
+    "waitSelector": ".column-grid-container__column",
     "autoScroll": true,
-    "waitTime": 6000,
+    "waitTime": 8000,
     "selectors": {
-      "product": ".product",
-      "name": ".link",
-      "price": ".default-pricing .sales .value",
-      "image": ".product-tile-image-link img"
+      "product": ".column-grid-container__column",
+      "name": "[data-qe-id='body-meta-field-text']",
+      "price": "[data-qe-id='body-price-text']",
+      "image": ".product-card__vertical__media-tall",
+      "link": "a.sc-hqiKlG"
     }
    }
 
 };
 
-// 可以根据需要添加更多站点配置

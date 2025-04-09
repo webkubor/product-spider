@@ -183,9 +183,11 @@ export async function standardScraper(siteName, config, page) {
             priceText = priceElement.getAttribute('data-price') || priceElement.getAttribute('content') || '';
           }
   
-          // 使用正则表达式提取数字部分
-          const match = priceText.match(/[\d\.]+/);
-          productPrice = match ? match[0] : '';
+          // 处理价格文本，保留数字、小数点和逗号
+          // 先移除货币符号和其他非数字字符
+          priceText = priceText.replace(/[^\d\.,]/g, '');
+          // 保留完整的价格字符串，包括逗号
+          productPrice = priceText;
         }
       
       // 如果没有获取到名称或价格，使用占位符
@@ -271,12 +273,7 @@ export async function standardScraper(siteName, config, page) {
     return product;
   });
   
-  // 应用产品数量限制
-  const limit = globalConfig.productLimit || 50; // 默认值为50
-  if (processedProducts.length > limit) {
-    log.info(`产品数量超过限制 (${limit})，将只保留前 ${limit} 个产品`);
-    return processedProducts.slice(0, limit);
-  }
-  
+  // 不再在这里限制产品数量，而是在saveResults函数中处理
+  // 这样可以获取到全部产品数据，然后分割保存
   return processedProducts;
 }
