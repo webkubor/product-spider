@@ -10,7 +10,8 @@ export const ignoreList = [
   "plush-toys",
   "spring",
   "ponds",
-  "bluetooth-speakers"
+  "bluetooth-speakers",
+  "dayshoping"
 ];
 
 // 全局配置
@@ -19,18 +20,30 @@ export const globalConfig = {
 };
 
 export const scrapingConfig = {
-  "trimmers-shaver":{
-    'url': "https://priceoye.pk/trimmers-shaver",
+  "pubshopee.online":{
+   "url": "https://www.amazon.in/gp/bestsellers/boost/ref=zg_bs_pg_2_boost?ie=UTF8&pg=2",
+   "type": "standard",
+   "waitSelector": ".p13n-desktop-grid",
+   "autoScroll": true,
+   "waitTime": 3000,
+   "selectors": {
+     "product": ".a-column",
+     "name": "._cDEzb_p13n-sc-css-line-clamp-3_g3dy1",
+     "price": ".a-size-base.a-color-price span",
+     "image": ".a-section img"
+   }
+  },
+  "dayshoping":{
+    'url': "https://www.amazon.in/gp/bestsellers/boost/ref=zg_bs_boost_sm",
     "type": "standard",
-    "waitSelector": ".product-list",
+    "waitSelector": ".p13n-desktop-grid",
     "autoScroll": true,
-    "waitTime": 6000,
+    "waitTime": 3000,
     "selectors": {
-      "product": ".productBox",
-      "name": ".text-box .p-title",
-      "price": ".price-box",
-      "difference": ".price-diff .price-diff-saving",
-      "image": ".image-box img"
+      "product": ".a-column",
+      "name": "._cDEzb_p13n-sc-css-line-clamp-3_g3dy1",
+      "price": ".a-size-base.a-color-price span",
+      "image": ".a-section img"
     }
   },
   "bluetooth-speakers":{
@@ -58,35 +71,6 @@ export const scrapingConfig = {
       "name": ".t4s-product-title a",
       "price": ".t4s-product-price .money",
       "image": ".t4s-product-img img"
-    }
-  },
-
-  "spring":{
-    'url': "https://www.uppacase.com/categories/spring",
-    "type": "standard",
-    "waitSelector": ".ProductList-list",
-    "autoScroll": true,
-    "waitTime": 3000,
-    "selectors": {
-      "product": ".product-item",
-      "name": ".title.text-primary-color",
-      "price": ".price.sl-price",
-      "oldPrice": ".ProductItem-price--compare",
-      "image": ".boxify-image-wrap img"
-    }
-  },
-  "plush-toys":{
-    'url': "https://www.uppacase.com/categories/character-plush-toy",
-    "type": "standard",
-    "waitSelector": ".ProductList-list",
-    "autoScroll": true,
-    "waitTime": 3000,
-    "selectors": {
-      "product": ".product-item",
-      "name": ".title.text-primary-color",
-      "price": ".price.sl-price",
-      "oldPrice": ".ProductItem-price--compare",
-      "image": ".boxify-image-wrap img"
     }
   },
   "shoptrendy":{
