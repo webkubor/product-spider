@@ -11,7 +11,8 @@ export const ignoreList = [
   "spring",
   "ponds",
   "bluetooth-speakers",
-  "dayshoping"
+  "dayshoping",
+  "pubshopee"
 ];
 
 // 全局配置
@@ -20,7 +21,24 @@ export const globalConfig = {
 };
 
 export const scrapingConfig = {
-  "pubshopee.online":{
+  "boboshop":{
+    "url": "https://www.amazon.in/b/?_encoding=UTF8&ie=UTF8&node=10894230031&ref_=sv_lpdin_2",
+    "type": "standard",
+    "waitSelector": "body",
+    "autoScroll": true,
+    "waitTime": 8000,
+    "selectors": {
+      "product": ".a-section",
+      "name": "h2, .a-size-base-plus, .a-size-medium",
+      "price": ".a-price, .a-color-price",
+      "oldPrice": ".a-price.a-text-price, .a-text-strike",
+      "rating": ".a-icon-star, .a-star-medium",
+      "reviews": ".a-size-base",
+      "image": "img",
+      "link": "a"
+    }
+   },
+  "pubshopee":{
    "url": "https://www.amazon.in/gp/bestsellers/boost/ref=zg_bs_pg_2_boost?ie=UTF8&pg=2",
    "type": "standard",
    "waitSelector": ".p13n-desktop-grid",
