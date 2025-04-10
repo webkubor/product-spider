@@ -1,4 +1,5 @@
 import { log } from './logger.js';
+import { globalConfig } from '../config.js';
 
 /**
  * 模拟滚动加载（用于懒加载页面）
@@ -37,6 +38,14 @@ export async function autoScroll(page) {
 export async function saveResults(siteName, data, fs, path, limit) {
   const resultsDir = './results';
   await fs.ensureDir(resultsDir);
+  
+  // 如果启用了重新编号，重新生成连续的产品ID
+  if (globalConfig.reindexProducts) {
+    data = data.map((product, index) => ({
+      ...product,
+      id: index + 1
+    }));
+  }
   
   // 如果数据量小于等于限制，直接保存到一个文件
   if (data.length <= limit) {

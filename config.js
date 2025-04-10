@@ -7,7 +7,8 @@ export const ignoreList = [
 
 // 全局配置
 export const globalConfig = {
-  productLimit: 30  // 每个站点最多爬取的产品数量
+  productLimit: 30,  // 每个站点最多爬取的产品数量
+  reindexProducts: true  // 是否重新生成连续的产品ID
 };
 
 export const scrapingConfig = {
