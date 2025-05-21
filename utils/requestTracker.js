@@ -35,8 +35,8 @@ export class RequestTracker {
       let queryParams = null;
       let postData = request.postData() || null;
       
-      // 如果是 GET 请求，尝试提取查询参数
-      if (request.method() === 'GET' && request.url().includes('?')) {
+      // 对于所有请求，如果 URL 中包含查询参数，尝试提取
+      if (request.url().includes('?')) {
         try {
           const urlObj = new URL(request.url());
           queryParams = {};

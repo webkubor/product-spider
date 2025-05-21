@@ -196,15 +196,28 @@ async function monitorRequests(url, options = {}) {
       console.log(chalk.green.bold(`${reqNumber}. ${req.method} ${req.url}`));
       
       // 请求参数（如果有）
-      if (req.parsedPostData) {
-        console.log(chalk.cyan('  请求参数 (JSON):'));
-        console.log('  ' + JSON.stringify(req.parsedPostData, null, 2).replace(/\n/g, '\n  '));
-      } else if (req.postData) {
-        console.log(chalk.cyan('  请求参数:'));
-        console.log(`  ${req.postData.substring(0, 100)}${req.postData.length > 100 ? '...' : ''}`);
-      } else if (req.queryParams) {
-        console.log(chalk.cyan('  查询参数:'));
+      let hasParams = false;
+      
+      // 显示 URL 中的查询参数（无论是 GET 还是 POST 请求）
+      if (req.queryParams && Object.keys(req.queryParams).length > 0) {
+        console.log(chalk.cyan('  URL查询参数:'));
         console.log('  ' + JSON.stringify(req.queryParams, null, 2).replace(/\n/g, '\n  '));
+        hasParams = true;
+      }
+      
+      // 显示 POST 请求的数据
+      if (req.parsedPostData) {
+        console.log(chalk.cyan('  POST数据 (JSON):'));
+        console.log('  ' + JSON.stringify(req.parsedPostData, null, 2).replace(/\n/g, '\n  '));
+        hasParams = true;
+      } else if (req.postData) {
+        console.log(chalk.cyan('  POST数据:'));
+        console.log(`  ${req.postData.substring(0, 100)}${req.postData.length > 100 ? '...' : ''}`);
+        hasParams = true;
+      }
+      
+      if (!hasParams) {
+        console.log(chalk.italic('  无请求参数'));
       }
       
       // 响应信息
