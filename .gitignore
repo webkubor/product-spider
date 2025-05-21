@@ -7,7 +7,6 @@ package-lock.json
 
 # 爬虫结果文件
 results/
-*.json
 
 # 运行时生成的文件
 debug.png
