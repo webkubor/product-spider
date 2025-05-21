@@ -2,7 +2,8 @@
 
 // 忽略名单，列出不需要爬取的站点
 export const ignoreList = [
-  "doughnut"
+  "doughnut",
+  "usasnackshop"
 ];
 
 // 全局配置
@@ -12,7 +13,25 @@ export const globalConfig = {
 };
 
 export const scrapingConfig = {
-   "usasnackshop": {
+  "perfume": {
+    "url": "https://www.perfume.com/men",
+    "type": "standard",
+    "waitSelector": ".g3-3of4.g4-5of6.search__results_mq3_fix",
+    "autoScroll": true,
+    "waitTime": 4000,
+    "selectors": {
+      "product": ".g5-1of4.bs.product",
+      "name": ".h6.mbn.blink span",
+      "price": ".sans.bidi-override .flag",
+      "image": ".product-img img",
+      "brand": ".sans a",
+      "rating": ".pr-snippet-rating-decimal",
+      "reviews": ".pr-num-ratings",
+      "link": ".product-image__link"
+    }
+
+  },
+  "usasnackshop": {
     "url": "https://usasnackshop.com/collections/all",
     "type": "standard",
     "waitSelector": "#product-grid",
@@ -30,8 +49,8 @@ export const scrapingConfig = {
       "price": ".price-item.price-item--regular",
       "image": ".media.media--transparent.media--hover-effect img",
     }
-   },
-   "doughnut": {
+  },
+  "doughnut": {
     "url": "https://www.doughnut.com.tw/v2/official/SalePageCategory/445264?sortMode=PageView",
     "type": "standard",
     "waitSelector": ".column-grid-container__column",
@@ -44,7 +63,7 @@ export const scrapingConfig = {
       "image": ".product-card__vertical__media-tall",
       "link": "a.sc-hqiKlG"
     }
-   }
+  }
 
 };
 

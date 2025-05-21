@@ -14,7 +14,7 @@ async function main() {
   
   // 启动浏览器
   const browser = await chromium.launch({
-    headless: true
+    headless: false
   });
   
   try {
