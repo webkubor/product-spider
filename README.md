@@ -121,6 +121,105 @@ node requestMonitor.js https://www.example.com 5000
 - 监控摘要（总请求数、总响应数、监控时长等）
 - 请求类型统计（按资源类型分类）
 - 响应状态码统计
+- AJAX请求详情，包括请求URL、方式、参数和响应数据
+
+同时，完整的监控数据会保存为JSON文件，格式如下：
+
+```json
+{
+  "totalRequests": 42,
+  "totalResponses": 40,
+  "startTime": "2025-05-21T07:00:00.000Z",
+  "endTime": "2025-05-21T07:00:10.000Z",
+  "duration": 10000,
+  "targetUrl": "https://example.com",
+  "requests": [
+    {
+      "id": 1,
+      "url": "https://example.com",
+      "method": "GET",
+      "headers": { ... },
+      "resourceType": "document",
+      "timestamp": 1621234567890,
+      "timeSinceStart": 0,
+      "response": {
+        "status": 200,
+        "statusText": "OK",
+        "headers": { ... },
+        "body": "<!DOCTYPE html>..."
+      }
+    },
+    ...
+  ]
+}
+```
+
+## 前端开发工具
+
+除了产品爬虫和请求监控功能外，本项目还提供了一系列基于 Playwright 的前端开发工具，帮助前端开发者提高开发效率。
+
+### 网页截图工具
+
+对任意网页进行截图，支持全页面或特定元素截图。
+
+```bash
+# 基本用法
+npm run screenshot -- https://example.com
+
+# 截取特定元素
+npm run screenshot -- https://example.com --selector=".header-logo"
+
+# 模拟移动设备
+npm run screenshot -- https://example.com --device="iPhone 12"
+
+# 自定义视口大小
+npm run screenshot -- https://example.com --width=1280 --height=720
+
+# 设置等待时间
+npm run screenshot -- https://example.com --waitTime=5000
+```
+
+### 性能测试工具
+
+收集和分析网页性能指标，如加载时间、首次绘制、DOM交互时间等。
+
+```bash
+# 基本用法
+npm run performance -- https://example.com
+
+# 多次运行取平均值
+npm run performance -- https://example.com --runs=5
+
+# 模拟移动设备
+npm run performance -- https://example.com --device="iPhone 12"
+
+# 模拟网络节流
+npm run performance -- https://example.com --throttling="slow3G"
+```
+
+### 视觉回归测试工具
+
+对比两个网页的视觉差异，适合用于UI变更前后的对比。
+
+```bash
+# 基本用法
+npm run visual-diff -- https://production.com https://staging.com
+
+# 设置像素匹配阈值
+npm run visual-diff -- https://production.com https://staging.com --threshold=0.2
+
+# 对比特定元素
+npm run visual-diff -- https://production.com https://staging.com --selector=".hero-section"
+
+# 模拟移动设备
+npm run visual-diff -- https://production.com https://staging.com --device="iPhone 12"
+```
+
+终端中将显示美化的请求监控结果，包括：
+
+- 监控摘要（总请求数、总响应数、监控时长等）
+- 请求类型统计（按资源类型分类）
+- 响应状态码统计
 - 前10个请求的详细信息
 
 同时，完整的监控数据会保存为JSON文件，格式如下：

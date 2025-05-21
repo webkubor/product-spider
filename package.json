@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "monitor": "node requestMonitor.js"
+    "monitor": "node requestMonitor.js",
+    "monitor:url": "node requestMonitor.js https://pk-test.tpservice.vip/#/payment/P1922671792899477505",
+    "screenshot": "node tools/screenshotTool.js",
+    "performance": "node tools/performanceTool.js",
+    "visual-diff": "node tools/visualRegressionTool.js",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
     "@faker-js/faker": "^9.6.0",
@@ -17,5 +22,9 @@
     "ora": "^8.2.0",
     "playwright": "^1.40.1"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "pixelmatch": "^7.1.0",
+    "pngjs": "^7.0.0"
+  }
 }
