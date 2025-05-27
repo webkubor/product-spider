@@ -165,10 +165,10 @@ export class RequestTracker {
       // 确保输出目录存在
       await fs.ensureDir(outputDir);
       
-      // 生成文件名（使用URL的域名部分）
+      // 生成简洁的文件名（只使用域名和日期，不包含时间）
       const domain = new URL(url).hostname;
-      const timestamp = new Date().toISOString().replace(/:/g, '-').replace(/\..+/, '');
-      const fileName = `${domain}_${timestamp}.json`;
+      const date = new Date().toISOString().split('T')[0]; // 只获取日期部分 YYYY-MM-DD
+      const fileName = `${domain}_${date}.json`;
       const filePath = path.join(outputDir, fileName);
       
       // 准备数据

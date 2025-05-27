@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node index.js",
     "monitor": "node requestMonitor.js",
-    "monitor:url": "node requestMonitor.js https://pk-test.tpservice.vip/#/payment/P1922671792899477505",
     "screenshot": "node tools/screenshotTool.js",
     "performance": "node tools/performanceTool.js",
     "visual-diff": "node tools/visualRegressionTool.js",
